@@ -22,6 +22,7 @@ docker run \
     --name="$NAME" \
     -v ${SOURCE_PLUGIN}:/var/lib/grafana/plugins/sensorcloud/ \
     --volumes-from grafana-storage \
+    -v /etc/localtime:/etc/localtime:ro \
     grafana/grafana
 
     #-v ${HOME}/docker/grafana/plugins/:/var/lib/grafana/plugins/ \

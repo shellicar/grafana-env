@@ -13,6 +13,7 @@ docker run \
     --name "${NAME}" \
     -v ${SOURCE_PLUGIN}:/root/plugin/ \
     -v grafana-plugin-node-modules:/root/plugin/node_modules/ \
+    -v /etc/localtime:/etc/localtime:ro \
     ${TAGNAME} \
     /bin/bash
 
