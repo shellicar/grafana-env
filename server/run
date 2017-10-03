@@ -1,0 +1,27 @@
+#!/bin/sh
+
+NAME=grafana
+SOURCE_PLUGIN=${HOME}/host/plugins/sensorcloud/
+
+STATE=$(docker inspect --format '{{ .State.Running }}' ${NAME})
+echo "State=$STATE"
+
+if [ "$STATE" = "true" ]; then
+    echo "Stopping & Removing"
+    docker stop "$NAME" || exit
+    docker rm "$NAME" || exit   
+elif [ "$STATE" = "false" ]; then
+    echo "Removing"
+    docker rm "$NAME" || exit
+fi
+echo "Starting"
+
+docker run \
+    -d \
+    -p 3000:3000 \
+    --name="$NAME" \
+    -v ${SOURCE_PLUGIN}:/var/lib/grafana/plugins/sensorcloud/ \
+    --volumes-from grafana-storage \
+    grafana/grafana
+
+    #-v ${HOME}/docker/grafana/plugins/:/var/lib/grafana/plugins/ \
