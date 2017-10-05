@@ -1,2 +1,7 @@
 FROM grafana/grafana:latest
 
+RUN mkdir -p /usr/lib/grafana \
+&&  chown grafana:grafana /usr/lib/grafana
+
+ADD ./files/grafana.ini /etc/grafana/grafana.ini
+

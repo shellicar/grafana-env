@@ -5,6 +5,7 @@
 NAME=grafana
 TAG_NAME=shellicar/grafana
 GRAFANA_STORAGE=grafana-storage
+EXTERNAL_PORT=8080
 
 STATE=$(docker inspect --format '{{ .State.Running }}' ${NAME})
 echo "State=$STATE"
@@ -21,10 +22,11 @@ echo "Starting"
 
 docker run \
     -d \
-    -p 3000:3000 \
+    -p ${EXTERNAL_PORT}:3000 \
     --name="$NAME" \
-    -v ${PLUGIN_PATH}:/var/lib/grafana/plugins/sensorcloud/:rw \
-    -v ${GRAFANA_STORAGE}:/var/lib/grafana/:rw \
+    -v ${PLUGIN_PATH}:/usr/lib/grafana/plugins/sensorcloud/:rw \
+    -v grafana-plugins:/usr/lib/grafana/plugins/ \
+    -v ${GRAFANA_STORAGE}:/var/lib/grafana/data/:rw \
     -v /etc/localtime:/etc/localtime:ro \
     ${TAG_NAME}
 
