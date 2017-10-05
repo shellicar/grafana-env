@@ -1,0 +1,4 @@
+#!/bin/sh
+
+PLUGIN_PATH=${HOME}/dev/sensorcloud-grafana-plugin/
+

@@ -1,4 +1,0 @@
-#!/bin/sh
-
-docker run -d -v /var/lib/grafana --name grafana-storage busybox:latest
-

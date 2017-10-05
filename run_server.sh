@@ -1,7 +1,10 @@
 #!/bin/sh
 
+. ./paths
+
 NAME=grafana
-SOURCE_PLUGIN=${HOME}/host/plugins/sensorcloud/
+TAG_NAME=shellicar/grafana
+GRAFANA_STORAGE=grafana-storage
 
 STATE=$(docker inspect --format '{{ .State.Running }}' ${NAME})
 echo "State=$STATE"
@@ -20,9 +23,8 @@ docker run \
     -d \
     -p 3000:3000 \
     --name="$NAME" \
-    -v ${SOURCE_PLUGIN}:/var/lib/grafana/plugins/sensorcloud/ \
-    --volumes-from grafana-storage \
+    -v ${PLUGIN_PATH}:/var/lib/grafana/plugins/sensorcloud/:rw \
+    -v ${GRAFANA_STORAGE}:/var/lib/grafana/:rw \
     -v /etc/localtime:/etc/localtime:ro \
-    grafana/grafana
+    ${TAG_NAME}
 
-    #-v ${HOME}/docker/grafana/plugins/:/var/lib/grafana/plugins/ \

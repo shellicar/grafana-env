@@ -2,32 +2,18 @@
 
 Docker environment for developing and using grafana plugin
 
-# mount.sh
-Script to mount the plugin from a host folder (using VBox shared folder) if needed
+# paths
+Sets PLUGIN_PATH environment variable
 
-# dev
-Interactive container to build the plugin. After running
-```
-cd plugin
-./install.sh -or- yarn install
-```
-Then to build
-```
-npm run build
-```
-Or watch
-```
-./watch.sh
-```
+# share.sh
+Share plugin folder for editing on other system if required
 
-# server
-Grafana container scripts
-To create storage volume
-```
-./storage
-```
-To run
-```
-./run -or- sudo ./run
-```
+# dev.sh
+Container to build plugin for grafana
+
+# storage.sh
+Created persistent storage for the server
+
+# server.sh
+Runs server with the plugin
 
