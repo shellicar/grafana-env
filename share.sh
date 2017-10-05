@@ -24,6 +24,7 @@ docker run \
     -p 139:139 \
     -p 445:445 \
     -d \
+    --restart unless-stopped \
     dperson/samba \
     -u "hel071;pass1" \
     -s "plugin;/plugin;no;no;no;hel071;hel071"

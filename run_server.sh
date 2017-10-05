@@ -28,5 +28,6 @@ docker run \
     -v grafana-plugins:/usr/lib/grafana/plugins/ \
     -v ${GRAFANA_STORAGE}:/var/lib/grafana/data/:rw \
     -v /etc/localtime:/etc/localtime:ro \
+    --restart unless-stopped \
     ${TAG_NAME}
 
